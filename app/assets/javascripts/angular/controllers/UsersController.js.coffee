@@ -1,6 +1,6 @@
 #@agendum = angular.module "agendum"
 
-@agendum.controller 'UsersController', ($scope, $location, User) ->
+@agendum.controller 'UsersController', ($scope, $location, $cookies, User) ->
 	$scope.user = 
 		email: ""
 		password: ""
@@ -10,6 +10,7 @@
 		new User($scope.user).$save onUserSignUp, onUserSignUpFailed
 
 	onUserSignUp = ->
+		$cookies.currentUserEmail = $scope.user.email
 		$location.path "/tasks"
 
 	onUserSignUpFailed = (response) ->

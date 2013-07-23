@@ -1,17 +1,15 @@
-@agendum.controller 'UsersController', ($scope, $location, Session) ->
+@agendum.controller 'SessionsController', ($scope, $location, $cookies, Session) ->
 	$scope.user = 
 		email: ""
 		password: ""
 
-	$scope.signup = ->
+	$scope.login = ->
+		console.log "hi"
 		new Session($scope.user).$save onUserLogin, onUserLoginFailed
 
 	onUserLogin = ->
+		$cookies.currentUserEmail = $scope.user.email
 		$location.path "/tasks"
 
 	onUserLoginFailed = (response) ->
-		$scope.errors = niceErrors(response.data.errors)
-
-	niceErrors = (errors) ->
-		["Email: " + errors.email[0],
-		"Password: " + errors.password[0]]
+		$scope.errors = ["Wrong login details"]

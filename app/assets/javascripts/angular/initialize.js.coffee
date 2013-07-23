@@ -1,4 +1,4 @@
-@agendum = angular.module "agendum", ['ngResource']	
+@agendum = angular.module "agendum", ['ngResource', 'ngCookies']	
 
 @agendum.config ($routeProvider, $locationProvider) ->
 	$routeProvider
