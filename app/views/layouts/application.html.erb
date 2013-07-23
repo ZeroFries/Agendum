@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="agendum">
 <head>
   <title>Agendum</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<header class="top">
+		<h1 class="logo">Agendum</h1>
+	</header>
 
 <%= yield %>
 

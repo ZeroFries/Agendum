@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require angular.min
-//= require angle-up
-//= require_tree ./angular
+//= require angular-resource
+//= require ./angular/initialize
+//= require_tree .

@@ -1,7 +1,11 @@
 Agendum::Application.routes.draw do
   namespace :api do
     resources :users
+    resources :session, only: [:new, :create, :destroy]
   end
+
+  root to: "static#home"
+  get '*anything' => "static#home", via: [:all]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

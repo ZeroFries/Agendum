@@ -1,5 +1,9 @@
 class Api::UsersController < ApplicationController
+	respond_to :json
+
 	def index
+		@users = User.all
+		respond_with @users
 	end
 
 	def show
@@ -10,7 +14,13 @@ class Api::UsersController < ApplicationController
 	end
 
 	def create
-		#if User.where(email: params[:user][:email]).include? @user
-			# try logging in user
+		@user = User.create user_params
+		respond_with @user, location: root_path
 	end
+
+	private
+
+		def user_params
+			params.permit :email, :password, :password_confirmation
+		end
 end
