@@ -2,18 +2,63 @@
 	margin: 20px;
 }
 
+.errors{
+	list-style: none;
+}
+
 /* ----- Home ----- */
 
 .pitch{
 	width: 60%;
 	max-width: 800px;
-	margin: auto;
+	margin: 2.8em auto 8em auto;  // 60px / 16px = 3.5em ; 128px / 16 = 8em
 }
 
 .login_signup{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: black;
+	text-align: center;
 	& a{
 		text-decoration: none;
+		color: rgb(151, 0, 236);
 	}
+	& input{
+		display: block;
+		margin: auto;
+		padding: 11px 10px 9px 10px;
+		&:focus{
+			outline: none;
+		}
+	}
+}
+
+.login_signup_inputs{
+	& input:first-child{
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+	& input:last-child{
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+}
+
+.submit-btn{
+	letter-spacing: 0.1em;
+	line-height: 0.9em;
+	height: 1.8em;
+	margin-top: -5px;
+	background: #540D7C;
+	border-radius: 5px;
+	border: 2px solid #310947;
+}
+
+.close{
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
 }
 
 /* ----- Tasks ----- */

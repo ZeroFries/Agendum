@@ -2,11 +2,14 @@
 
 <div class="login_signup">
 	<h2><a href="/#/login">Login</a> or <a href="/#/signup", class="link_active">Sign up</a></h2>
-	<input type="text", placeholder="Email", ng-model="user.email">
-	<input type="password", placeholder="Password", ng-model="user.password">
-	<input type="password", placeholder="Confirm Password", ng-model="user.password_confirmation">
+	<span class="close"><a href="/#/">(X)</a></span>
+	<div class="login_signup_inputs">
+		<input type="text", placeholder="Email", ng-model="user.email">
+		<input type="password", placeholder="Password", ng-model="user.password">
+		<input type="password", placeholder="Confirm Password", ng-model="user.password_confirmation">
+	</div>
 	<ul class="errors">
 		<li ng-repeat="error in errors">{{error}}</li>
 	</ul>
-	<input type="submit", value="SIGNUP", ng-click="signup()">
+	<input type="submit", class="submit-btn", value="SIGNUP", ng-click="signup()">
 </div>

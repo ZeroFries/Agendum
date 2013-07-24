@@ -20,5 +20,8 @@
 		$scope.errors = niceErrors(response.data.errors)
 
 	niceErrors = (errors) ->
-		["Password: " + errors.password[0],
-		"Email: " + errors.email[0]]
+		errorArray = []
+		errorArray.push("Email: " + errors.email[0]) if errors.email != undefined
+		errorArray.push("Password: " + errors.password[0]) if errors.password != undefined
+		errorArray.push("Passwords must match") if errors.password_confirmation != undefined
+		errorArray

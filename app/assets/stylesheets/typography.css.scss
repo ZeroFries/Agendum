@@ -12,8 +12,17 @@
 }
 
 .login_signup{
-	font-family: Helvetica;
-	font-size: 2em; // 32 px / 16 px
+	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica;
+	color: white;	
+	font-size: 1.3em; // 24 px / 16 px
+	& input{
+		font-size: 1em;
+		font-weight: bold;
+	}
+}
+
+.submit-btn{
+	color: white;
 }
 
 /* ----- Tasks ----- */
