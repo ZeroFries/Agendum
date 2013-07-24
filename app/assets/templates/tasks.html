@@ -1,2 +1,23 @@
-testing
-<a href="/#/logout">Logout</a>
+<div class="nav-top">
+	<a href="/#/logout">Logout</a>
+</div>
+
+<article class="tasks_container">
+	<h2 class="tasks_heading">Tasks</h2>
+
+	<!-- task list -->
+	<ul class="tasks">
+		<li ng-repeat:"t in tasks">{{t.description}}</li>
+		<li>{{tasks[0].description}}<br>
+			From: {{tasks[0].created_at | date: 'longDate'}}
+		</li>
+		<li>{{tasks[1].description}}</li>
+		<li>{{task.description}}</li>
+	</ul>
+
+	<!-- new task -->
+	<textarea class="new_task_input", placeholder="Brief description of task", ng-model="task.description">
+	</textarea>
+	<input type="submit", class="submit-btn", value="Add new task", ng-click="addTask()">
+</article>
+

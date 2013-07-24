@@ -6,6 +6,10 @@
 	list-style: none;
 }
 
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
 /* ----- Home ----- */
 
 .pitch{
@@ -62,3 +66,8 @@
 }
 
 /* ----- Tasks ----- */
+
+.tasks{
+	list-style: none;
+	line-height: 1.5em;
+}

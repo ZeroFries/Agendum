@@ -25,3 +25,10 @@
 
 @agendum.factory "Session", ($resource) ->
 	$resource '/api/session'
+
+@agendum.factory "Task", ($resource) ->
+	$resource "/api/tasks/:id", {id: '@id'}
+
+@agendum.factory "Tasks", ($resource) ->
+	$resource "/api/tasks"
+	#, {}, actions: {'query': {method:'GET', params: email: '@email', isArray: true}}
