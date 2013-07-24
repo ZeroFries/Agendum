@@ -1,4 +1,6 @@
 Agendum::Application.routes.draw do
+  resources :tasks
+
   namespace :api do
     resources :users
     resources :session, only: [:new, :create, :destroy]

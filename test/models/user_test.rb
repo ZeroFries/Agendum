@@ -36,4 +36,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert !@user2.save
   end
+
+  test "deleting a user deletes their tasks" do
+    task = @user.tasks.create description: "test"
+    user_size = User.all.size
+    task_size = Task.all.size
+    @user.destroy
+
+    assert_equal User.all.size + 1, user_size
+    assert_equal Task.all.size + 1, task_size
+  end
 end

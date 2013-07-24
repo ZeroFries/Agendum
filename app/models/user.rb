@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	# associations
+	has_many :tasks, dependent: :destroy
 	# validations
 	valid_email = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
