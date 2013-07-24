@@ -1,0 +1,1 @@
+@agendum.controller 'TasksController', ($scope, $location, $cookies, Session) ->

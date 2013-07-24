@@ -1,10 +1,14 @@
 @agendum.controller 'SessionsController', ($scope, $location, $cookies, Session) ->
+	if $location.path() == "/logout"
+		console.log "yo"
+		delete $cookies.currentUserEmail
+		$location.path "/"
+
 	$scope.user = 
 		email: ""
 		password: ""
 
 	$scope.login = ->
-		console.log "hi"
 		new Session($scope.user).$save onUserLogin, onUserLoginFailed
 
 	onUserLogin = ->

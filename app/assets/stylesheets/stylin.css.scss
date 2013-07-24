@@ -1,0 +1,19 @@
+.logo{
+	margin: 20px;
+}
+
+/* ----- Home ----- */
+
+.pitch{
+	width: 60%;
+	max-width: 800px;
+	margin: auto;
+}
+
+.login_signup{
+	& a{
+		text-decoration: none;
+	}
+}
+
+/* ----- Tasks ----- */

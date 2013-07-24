@@ -1,6 +1,9 @@
 #@agendum = angular.module "agendum"
 
 @agendum.controller 'UsersController', ($scope, $location, $cookies, User) ->
+	# look into filters to see if i can just redirect with one of those
+	if $cookies.currentUserEmail != null
+		$location.path "/tasks"
 	$scope.user = 
 		email: ""
 		password: ""

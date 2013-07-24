@@ -2,9 +2,11 @@
 
 @agendum.config ($routeProvider, $locationProvider) ->
 	$routeProvider
-	.when('/', templateUrl: "/assets/home.html")
+	.when('/', templateUrl: "/assets/home.html", controller: 'StaticController')
 	.when('/login', templateUrl: "/assets/login.html", controller: 'SessionsController')
+	.when('/logout', templateUrl: "/assets/home.html", controller: 'SessionsController')
 	.when('/signup', templateUrl: "/assets/signup.html", controller: 'UsersController')
+	.when('/tasks', templateUrl: "/assets/tasks.html", controller: 'TasksController')
 	.otherwise(template: "Page not found.")
 
 @agendum.run ['$window', '$templateCache', ($window, $templateCache) ->
