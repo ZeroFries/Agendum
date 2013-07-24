@@ -30,4 +30,10 @@ class UserTest < ActiveSupport::TestCase
 
   	assert !@user.save
   end
+
+  test "no two users can have the same email" do
+    @user2 = FactoryGirl.build :user
+
+    assert !@user2.save
+  end
 end

@@ -1,5 +1,7 @@
 @agendum = angular.module "agendum", ['ngResource', 'ngCookies']	
 
+# things left to do: fix signup errors, try rendering home as a bunch of partials
+# filters to check if user is logged in or not
 @agendum.config ($routeProvider, $locationProvider) ->
 	$routeProvider
 	.when('/', templateUrl: "/assets/home.html", controller: 'StaticController')

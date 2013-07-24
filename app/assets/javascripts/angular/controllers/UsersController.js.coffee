@@ -2,7 +2,7 @@
 
 @agendum.controller 'UsersController', ($scope, $location, $cookies, User) ->
 	# look into filters to see if i can just redirect with one of those
-	if $cookies.currentUserEmail != null
+	if $cookies.currentUserEmail != undefined
 		$location.path "/tasks"
 	$scope.user = 
 		email: ""
@@ -20,5 +20,5 @@
 		$scope.errors = niceErrors(response.data.errors)
 
 	niceErrors = (errors) ->
-		["Email: " + errors.email[0],
-		"Password: " + errors.password[0]]
+		["Password: " + errors.password[0],
+		"Email: " + errors.email[0]]
