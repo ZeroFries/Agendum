@@ -2,6 +2,7 @@ Agendum::Application.routes.draw do
   namespace :api do
     resources :users
     resources :tasks, except: [:show]
+    resources :sent_tasks, except: [:show]
     resources :session, only: [:new, :create, :destroy]
   end
 
