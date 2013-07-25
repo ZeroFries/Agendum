@@ -31,4 +31,10 @@
 
 @agendum.factory "Tasks", ($resource) ->
 	$resource "/api/tasks"
-	#, {}, actions: {'query': {method:'GET', params: email: '@email', isArray: true}}
+
+@agendum.factory "SentTask", ($resource) ->
+	$resource "/api/sent_tasks/:id", {id: '@id'}
+	#, {'save': {method:'Post', parameters: ('emails', 'sender_email', 'description') isArray:true}}
+
+@agendum.factory "SentTasks", ($resource) ->
+	$resource "/api/sent_tasks"

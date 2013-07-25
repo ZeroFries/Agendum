@@ -8,8 +8,7 @@
 	<!-- task list -->
 	<ul class="tasks">
 		<li ng-repeat="t in tasks">
-			[{{tasks[0].created_at | date: 'MMM d'}}] - {{t.description}<br> 	
-			{{t.id}}
+			[{{t.created_at | date: 'MMM d'}}] - {{t.description}}
 			<button ng-click="removeTask(t.id)">Done</button>
 		</li>
 		<li>{{task.description}}</li>
@@ -21,3 +20,42 @@
 	<input type="submit", class="submit-btn", value="Add new task", ng-click="addTask()">
 </article>
 
+
+<aside class="sent_tasks_container" ng-show="showSentTaskPane">
+	<h2 class="tasks_heading">Recieved Tasks</h2>
+
+	<ul class="tasks">
+		<li ng-repeat="t in sent_tasks">
+			[{{t.created_at | date: 'MMM d'}}] - {{t.description}}
+			From: {{senders[$index].email}}
+			<button ng-click="transferTask(t.id)">Transfer</button>
+			<button ng-click="dismissTask(t.id)">Dismiss</button>
+		</li>
+	</ul>
+
+	<div class="send_task_toggle" ng-click="toggleSentTaskPane()">
+		<em>Send Task</em>
+	</div>
+</aside>
+
+<aside class="send_task_container" ng-show="!showSentTaskPane">
+	<h2 class="tasks_heading">Send Task</h2>
+
+	<label for="to">To:</label>
+	<input type="text", placeholder="joe@email.com; jane@email.com", id="to", ng-model="send_task.emails">
+	<textarea class="new_task_input", placeholder="Brief description of task", ng-model="send_task.description">
+	</textarea>
+
+	<div class="notication" ng-show="notification.length>0"><strong>{{notification}}</strong></div>
+	<ul class="errors" ng-show="errors.data.length>0">
+		The following users do not exist:
+		<li ng-repeat="email in errors.data">{{email}}</li>
+	</ul>
+
+	<div class="send_task_toggle" ng-click="sendTask()">
+		<em>Send</em>
+	</div>
+	<div class="send_task_toggle" ng-click="toggleSentTaskPane()">
+		<em>Cancel</em>
+	</div>
+</aside>
