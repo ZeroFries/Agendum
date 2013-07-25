@@ -4,20 +4,22 @@
 		description: ""
 
 	Tasks.query({email: $cookies.currentUserEmail}, (info) ->
-		# must use a call back since its an asynchronous call
+		# must use a call back since query is an asynchronous function
 		$scope.tasks = info
-		# trying hack
-		#$scope.descriptions = (t.description for t in $scope.tasks)
-		#console.log $scope.descriptions
 	)
 
 	$scope.addTask = ->
 		new Task($scope.task).$save onTaskAdd
 		
 
-	onTaskAdd = ->
+	onTaskAdd = (t) ->
 		$scope.task.description = ""
-		Tasks.query({email: $cookies.currentUserEmail}, (info) ->
-			$scope.tasks = info
-		console.log $scope.tasks[0]
+		$scope.tasks.push t
+
+	$scope.removeTask = (id) ->
+		Task.delete(id: id, ->
+			# reload Tasks once deletion is complete; simply popping the task off was messing with the ID's
+			Tasks.query({email: $cookies.currentUserEmail}, (info) ->
+				$scope.tasks = info
+			)
 		)

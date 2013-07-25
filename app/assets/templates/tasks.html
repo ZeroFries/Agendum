@@ -7,8 +7,11 @@
 
 	<!-- task list -->
 	<ul class="tasks">
-		<li ng-repeat="t in tasks">{{tasks[0].created_at | date: 'longDate'}} - {{t.description}}
-			</li>
+		<li ng-repeat="t in tasks">
+			[{{tasks[0].created_at | date: 'MMM d'}}] - {{t.description}<br> 	
+			{{t.id}}
+			<button ng-click="removeTask(t.id)">Done</button>
+		</li>
 		<li>{{task.description}}</li>
 	</ul>
 
