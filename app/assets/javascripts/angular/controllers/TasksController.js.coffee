@@ -6,15 +6,18 @@
 	Tasks.query({email: $cookies.currentUserEmail}, (info) ->
 		# must use a call back since its an asynchronous call
 		$scope.tasks = info
-		console.log $scope.tasks[0]
+		# trying hack
+		#$scope.descriptions = (t.description for t in $scope.tasks)
+		#console.log $scope.descriptions
 	)
 
 	$scope.addTask = ->
 		new Task($scope.task).$save onTaskAdd
-		Tasks.query({email: $cookies.currentUserEmail}, (info) ->
-			$scope.tasks = info
-			console.log $scope.tasks[0].description
-		)
+		
 
 	onTaskAdd = ->
 		$scope.task.description = ""
+		Tasks.query({email: $cookies.currentUserEmail}, (info) ->
+			$scope.tasks = info
+		console.log $scope.tasks[0]
+		)

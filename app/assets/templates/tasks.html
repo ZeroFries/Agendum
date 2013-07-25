@@ -7,11 +7,8 @@
 
 	<!-- task list -->
 	<ul class="tasks">
-		<li ng-repeat:"t in tasks">{{t.description}}</li>
-		<li>{{tasks[0].description}}<br>
-			From: {{tasks[0].created_at | date: 'longDate'}}
-		</li>
-		<li>{{tasks[1].description}}</li>
+		<li ng-repeat="t in tasks">{{tasks[0].created_at | date: 'longDate'}} - {{t.description}}
+			</li>
 		<li>{{task.description}}</li>
 	</ul>
 
