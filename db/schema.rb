@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724183701) do
+ActiveRecord::Schema.define(version: 20130725165303) do
+
+  create_table "sent_tasks", force: true do |t|
+    t.text     "description"
+    t.integer  "sender_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sent_tasks", ["sender_id"], name: "index_sent_tasks_on_sender_id"
 
   create_table "tasks", force: true do |t|
     t.text     "description"
