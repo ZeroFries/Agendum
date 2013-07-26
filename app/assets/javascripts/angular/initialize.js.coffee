@@ -38,3 +38,6 @@
 
 @agendum.factory "SentTasks", ($resource) ->
 	$resource "/api/sent_tasks"
+
+@agendum.factory "Notification", ($resource) ->
+	$resource "/api/notifications/:id", {id: '@id'}

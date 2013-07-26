@@ -1,6 +1,6 @@
-<div class="nav-top">
+<nav class="nav-top">
 	<a href="/#/logout">Logout</a>
-</div>
+</nav>
 
 <article class="tasks_container">
 	<h2 class="tasks_heading">Tasks</h2>
@@ -46,7 +46,7 @@
 	<textarea class="new_task_input", placeholder="Brief description of task", ng-model="send_task.description">
 	</textarea>
 
-	<div class="notication" ng-show="notification.length>0"><strong>{{notification}}</strong></div>
+	<div class="notice" ng-show="notice.length>0"><strong>{{notice}}</strong></div>
 	<ul class="errors" ng-show="errors.data.length>0">
 		The following users do not exist:
 		<li ng-repeat="email in errors.data">{{email}}</li>

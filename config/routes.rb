@@ -1,9 +1,10 @@
 Agendum::Application.routes.draw do
   namespace :api do
     resources :users
-    resources :tasks, except: [:show]
-    resources :sent_tasks
-    resources :session, only: [:new, :create, :destroy]
+    resources :tasks, except: [:show, :new]
+    resources :sent_tasks, except: [:new]
+    resources :session, only: [:create, :destroy]
+    resources :notifications, except: [:new, :edit, :update]
   end
 
   root to: "static#home"

@@ -1,4 +1,10 @@
-@agendum.controller 'TasksController', ($scope, $location, $cookies, Tasks, Task, SentTask, SentTasks, User) ->
+@agendum.controller 'TasksController', ($scope, $location, $cookies, Tasks, Task, SentTask, SentTasks, User, Notification) ->
+	# redirect non-logged in users
+	if $cookies.currentUserEmail == undefined
+		$location.path "/"
+
+	# --- MODELS ---
+	
 	$scope.task =
 		email: $cookies.currentUserEmail
 		description: ""
@@ -19,6 +25,17 @@
 		$scope.senders = (User.get(id: t.sender_id) for t in $scope.sent_tasks)
 	)
 
+	# --- HELPERS ---
+
+	loadSentTasks = ->
+		SentTasks.query({email: $cookies.currentUserEmail}, (info) ->
+			$scope.sent_tasks = info
+			$scope.senders = (User.get(id: t.sender_id) for t in $scope.sent_tasks)
+		)
+
+
+	# --- ACTIONS ---
+
 	$scope.addTask = ->
 		new Task($scope.task).$save onTaskAdd
 		
@@ -37,8 +54,9 @@
 
 	$scope.toggleSentTaskPane = ->
 		$scope.showSentTaskPane = !$scope.showSentTaskPane
-		$scope.notification = ""
+		$scope.notice = ""
 		$scope.errors = []
+		loadSentTasks() if $scope.showSentTaskPane
 
 	$scope.sendTask = ->
 		new SentTask($scope.send_task).$save onTaskSend, onTaskSendFail
@@ -47,39 +65,33 @@
 		$scope.send_task.description = ""
 		$scope.send_task.emails = ""
 		$scope.errors = []
-		$scope.notification = "Task sent"
+		$scope.showSentTaskPane = !$scope.showSentTaskPane
+		$scope.notice = "Task sent"
 
 	onTaskSendFail = (info) ->
-		console.log info
 		$scope.errors = info
 		$scope.send_task.emails = ""
 		$scope.send_task.emails += (email for email in $scope.errors.data)
 
 	$scope.transferTask = (id) ->
-		# create new task
-		SentTask.get(id: id, (t) ->
-			console.log t
-			$scope.task.description = t.description
-			new Task($scope.task).$save onTaskAdd
-		)
-		# delete sent task
-		SentTask.delete(id: id, ->
-			# reload sent tasks
-			SentTasks.query({email: $cookies.currentUserEmail}, (info) ->
-				$scope.sent_tasks = info
-				$scope.senders = (User.get(id: t.sender_id) for t in $scope.sent_tasks)
-			)
-		)
+		# note: methods must cascade down due to relying on asynch call to complete before proceeding to next step
 		# send notification
+		new Notification(task_id: id, verb: "accepted").$save ->
+			# create new task
+			SentTask.get(id: id, (t) ->
+				$scope.task.description = t.description
+				new Task($scope.task).$save onTaskAdd
+				# delete sent task
+				SentTask.delete(id: id, ->
+					# reload sent tasks
+					loadSentTasks()
+				)
+			)
 
 	$scope.dismissTask = (id) ->
-		SentTask.delete(id: id, ->
-			# reload sent tasks
-			SentTasks.query({email: $cookies.currentUserEmail}, (info) ->
-				$scope.sent_tasks = info
-				$scope.senders = (User.get(id: t.sender_id) for t in $scope.sent_tasks)
-			)
-		)
 		# send notification
-
-# refacotr: one method to query and destroy sent task?
+		new Notification(task_id: id, verb: "dismissed").$save ->
+			SentTask.delete(id: id, ->
+				# reload sent tasks
+				loadSentTasks()
+			)
