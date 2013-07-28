@@ -1,18 +1,26 @@
+@mixin task-submit{
+	font-family: "Bebas";
+	letter-spacing: 2px;
+	line-height: 200%;
+}
+
 .logo{
-	font-family: Helvetica;
+	font-family: "Share-Bold";
 	font-size: 3.75em; // 60 px / 16 px
 	letter-spacing: 0.15em;
+	padding: -5px;
 }
 
 /* ----- Home ----- */
 
 .pitch{
-	font-family: Helvetica;
+	font-family: Calibri, Arial, "Open-Sans", Helvetica;
 	font-size: 2em; // 32 px / 16 px
+	line-height: 1.5em;
 }
 
 .login_signup{
-	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica;
+	font-family: "PDFinText", "Helvetica Neue", "HelveticaNeue", Helvetica;
 	color: white;	
 	font-size: 1.3em; // 24 px / 16 px
 	& input{
@@ -26,3 +34,44 @@
 }
 
 /* ----- Tasks ----- */
+
+.tasks_heading{
+	font-family: "PDFinText";
+	font-size: 2em; //  32 / 16px
+}
+
+.nav-list{
+	font-family: "PDFinText";
+	font-size: 1.5em;	
+	font-weight: bold;
+}
+
+label{
+	font-family: "PDFinText";
+	font-size: 1.5em;	
+}
+
+.send-task-toggle{
+	@include task-submit;
+}
+
+.send-task{
+	@include task-submit;
+}
+
+.send-task-cancel{
+	@include task-submit;
+}
+
+.submit-task{
+	@include task-submit;
+}
+
+.tasks{
+	font-family: HelveticaNeue, "Helvetica Neue";
+	font-size: 1.2em;
+}
+
+.notifications-container{
+	font-family: HelveticaNeue, "Helvetica Neue";
+}

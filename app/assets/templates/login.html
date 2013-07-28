@@ -3,10 +3,10 @@
 <div class="login_signup">
 	<h2><a href="/#/login", class="link_active">Login</a> or <a href="/#/signup">Sign up</a></h2>
 	<span class="close"><a href="/#/">(X)</a></span>
-	<div class="login_signup_inputs">
+	<form class="login_signup_inputs">
 		<input type="text", placeholder="Email", ng-model="user.email">
 		<input type="password", placeholder="Password", ng-model="user.password">
-	</div>
+	</form>
 	<ul class="errors">
 		<li ng-repeat="error in errors">{{error}}</li>
 	</ul>

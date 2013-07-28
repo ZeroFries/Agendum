@@ -41,14 +41,14 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :test do 
   gem "factory_girl_rails" 
-  gem "capybara" # needed for our integration tests, which we'll talk about more later
-  gem "database_cleaner" # used to "undo" any changes we made to the db during tests
-  #gem "capybara-webkit", '~> 1.0.0' # Capybara driver needed to handle JS
+  gem "database_cleaner"
 end
 
 group :development do
   gem 'better_errors' # makes the errors we see in the browser more descriptive
   gem 'pry-rails'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 # Use unicorn as the app server

@@ -1,49 +1,65 @@
 <nav class="nav-top">
-	<a href="/#/logout">Logout</a>
+	<ul class="nav-list">
+		<li title="Clear notifications" ng-mouseover="showNotifications = true" ng-mouseleave="showNotifications = false" ng-click="clearNotifications()" style="cursor: pointer">
+			Notifications({{notifications.length}})
+		</li>
+		<li><a href="/#/logout">Logout</a></li>
+	</ul>
+	<!-- notifications -->
+	<ul class="notifications-container" ng-show="showNotifications">
+		<li ng-repeat="notification in notifications"><em>{{notification.message}}</em></li>
+	</ul>
 </nav>
 
-<article class="tasks_container">
+<article class="tasks-container">
 	<h2 class="tasks_heading">Tasks</h2>
 
 	<!-- task list -->
 	<ul class="tasks">
 		<li ng-repeat="t in tasks">
-			[{{t.created_at | date: 'MMM d'}}] - {{t.description}}
-			<button ng-click="removeTask(t.id)">Done</button>
+			<button ng-click="removeTask(t.id)" title="Complete">&#x2713;</button>
+			[<strong>{{t.created_at | date: 'MMM d'}}</strong>] - {{t.description}}
 		</li>
 		<li>{{task.description}}</li>
 	</ul>
 
 	<!-- new task -->
-	<textarea class="new_task_input", placeholder="Brief description of task", ng-model="task.description">
+	<input type="submit", class="submit-task", value="Add new task", ng-click="addTask()">	
+	<textarea class="new-task-input", placeholder="Brief description of task", ng-model="task.description">
 	</textarea>
-	<input type="submit", class="submit-btn", value="Add new task", ng-click="addTask()">
 </article>
 
 
-<aside class="sent_tasks_container" ng-show="showSentTaskPane">
+<!-- sent tasks -->
+<aside class="sent-tasks-container" ng-show="showSentTaskPane">
 	<h2 class="tasks_heading">Recieved Tasks</h2>
 
 	<ul class="tasks">
 		<li ng-repeat="t in sent_tasks">
-			[{{t.created_at | date: 'MMM d'}}] - {{t.description}}
-			From: {{senders[$index].email}}
-			<button ng-click="transferTask(t.id)">Transfer</button>
-			<button ng-click="dismissTask(t.id)">Dismiss</button>
+			<div class="accept-dismiss-wrapper">
+				<button ng-click="transferTask(t.id)" title="Accept"><strong>&#x21a9;</strong></button>
+				<button ng-click="dismissTask(t.id)" title="Dismiss" style="width:35px">&#10005;</button>
+			</div>
+			<div class="sent-task-wrapper">
+				[<strong>{{t.created_at | date: 'MMM d'}}</strong>] - {{t.description}}
+				<br /><strong>From: {{senders[$index].email}}</strong>
+			</div>
 		</li>
 	</ul>
 
-	<div class="send_task_toggle" ng-click="toggleSentTaskPane()">
-		<em>Send Task</em>
+	<div class="send-task-toggle" ng-click="toggleSentTaskPane()">
+		Send Task
 	</div>
 </aside>
 
-<aside class="send_task_container" ng-show="!showSentTaskPane">
+
+<!-- send a task -->
+<aside class="sent-tasks-container" ng-show="!showSentTaskPane">
 	<h2 class="tasks_heading">Send Task</h2>
 
 	<label for="to">To:</label>
-	<input type="text", placeholder="joe@email.com; jane@email.com", id="to", ng-model="send_task.emails">
-	<textarea class="new_task_input", placeholder="Brief description of task", ng-model="send_task.description">
+	<input type="text", placeholder="joe@email.com; jane@email.com", id="to", class="new-task-input", ng-model="send_task.emails">
+	<textarea class="new-task-input", placeholder="Brief description of task", ng-model="send_task.description">
 	</textarea>
 
 	<div class="notice" ng-show="notice.length>0"><strong>{{notice}}</strong></div>
@@ -52,10 +68,10 @@
 		<li ng-repeat="email in errors.data">{{email}}</li>
 	</ul>
 
-	<div class="send_task_toggle" ng-click="sendTask()">
-		<em>Send</em>
+	<div class="send-task" ng-click="sendTask()">
+		Send
 	</div>
-	<div class="send_task_toggle" ng-click="toggleSentTaskPane()">
-		<em>Cancel</em>
+	<div class="send-task-cancel" ng-click="toggleSentTaskPane()">
+		Cancel
 	</div>
 </aside>

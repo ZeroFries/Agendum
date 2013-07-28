@@ -2,3 +2,42 @@
 
 
 /* ----- Tasks ----- */
+
+.nav-top{
+	position: absolute;
+	top: 2.1em;
+	right: 2.5em;
+	max-width: 18em;
+}
+
+.tasks-container{
+	max-width: 37.5em;// 600 / 16 = 37.5
+	width: 50%;
+	float: left;
+}
+
+.sent-tasks-container{
+	width: 40%;
+	max-width: 30em;  // 90% of 37.5
+	float: right;
+	min-height: 26.125em; // 450 / 16
+}
+
+/* Apply css when screen is below 420px */
+@media all and (max-width: 560px) {
+	.tasks-container{
+		width: 90%;
+		float: none;
+		margin: auto;
+		margin-bottom: 20px;
+	}
+
+	.sent-tasks-container{
+		width: 90%;
+	}
+
+	.nav-top{
+		position: static;
+		margin-left: 20px;
+	}
+}

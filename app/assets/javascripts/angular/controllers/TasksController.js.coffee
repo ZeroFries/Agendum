@@ -4,41 +4,57 @@
 		$location.path "/"
 
 	# --- MODELS ---
-	
-	$scope.task =
+
+	$scope.user =
 		email: $cookies.currentUserEmail
+
+	$scope.task =
+		email: $scope.user.email
 		description: ""
 
 	$scope.send_task =
-		sender_email: $cookies.currentUserEmail
+		sender_email: $scope.user.email
 		emails: ""
 		description: ""
 
-	Tasks.query({email: $cookies.currentUserEmail}, (info) ->
+	Tasks.query({email: $scope.user.email}, (info) ->
 		# must use a call back since query is an asynchronous function
 		$scope.tasks = info
 	)
 
-	SentTasks.query({email: $cookies.currentUserEmail}, (info) ->
+	SentTasks.query({email: $scope.user.email}, (info) ->
 		$scope.showSentTaskPane = true
 		$scope.sent_tasks = info
 		$scope.senders = (User.get(id: t.sender_id) for t in $scope.sent_tasks)
 	)
 
+	Tasks.query({email: $scope.user.email}, (info) ->
+		# must use a call back since query is an asynchronous function
+		$scope.tasks = info
+	)
+
 	# --- HELPERS ---
 
 	loadSentTasks = ->
-		SentTasks.query({email: $cookies.currentUserEmail}, (info) ->
+		SentTasks.query({email: $scope.user.email}, (info) ->
 			$scope.sent_tasks = info
 			$scope.senders = (User.get(id: t.sender_id) for t in $scope.sent_tasks)
+		)
+
+	loadNotifications = ->
+		Notification.query({email: $scope.user.email}, (info) ->
+			$scope.notifications = info
 		)
 
 
 	# --- ACTIONS ---
 
+	loadNotifications()
+
 	$scope.addTask = ->
 		new Task($scope.task).$save onTaskAdd
-		
+		loadNotifications()
+		loadSentTasks()
 
 	onTaskAdd = (t) ->
 		$scope.task.description = ""
@@ -52,11 +68,14 @@
 			)
 		)
 
+
 	$scope.toggleSentTaskPane = ->
 		$scope.showSentTaskPane = !$scope.showSentTaskPane
 		$scope.notice = ""
 		$scope.errors = []
 		loadSentTasks() if $scope.showSentTaskPane
+		loadNotifications()
+		loadSentTasks()
 
 	$scope.sendTask = ->
 		new SentTask($scope.send_task).$save onTaskSend, onTaskSendFail
@@ -67,6 +86,8 @@
 		$scope.errors = []
 		$scope.showSentTaskPane = !$scope.showSentTaskPane
 		$scope.notice = "Task sent"
+		loadNotifications()
+		loadSentTasks()
 
 	onTaskSendFail = (info) ->
 		$scope.errors = info
@@ -85,6 +106,7 @@
 				SentTask.delete(id: id, ->
 					# reload sent tasks
 					loadSentTasks()
+					loadNotifications()
 				)
 			)
 
@@ -94,4 +116,11 @@
 			SentTask.delete(id: id, ->
 				# reload sent tasks
 				loadSentTasks()
+				loadNotifications()
 			)
+
+
+	$scope.clearNotifications = ->
+		Notification.delete({email: $scope.user.email, id: 1}, ->
+			$scope.notifications = []
+		)
