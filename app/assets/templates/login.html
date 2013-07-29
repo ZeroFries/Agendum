@@ -3,12 +3,12 @@
 <div class="login_signup">
 	<h2><a href="/#/login", class="link_active">Login</a> or <a href="/#/signup">Sign up</a></h2>
 	<span class="close"><a href="/#/">(X)</a></span>
-	<form class="login_signup_inputs">
+	<form class="login_signup_inputs" ng-controller="SessionsController">
 		<input type="text", placeholder="Email", ng-model="user.email">
-		<input type="password", placeholder="Password", ng-model="user.password">
+		<span><input type="password", placeholder="Password", ng-model="user.password"></span>
+		<ul class="errors">
+			<li ng-repeat="error in errors">{{error}}</li>
+		</ul>
+		<input type="submit", class="submit-btn", value="LOGIN", ng-click="login()">
 	</form>
-	<ul class="errors">
-		<li ng-repeat="error in errors">{{error}}</li>
-	</ul>
-	<input type="submit", class="submit-btn", value="LOGIN", ng-click="login()">
 </div>
