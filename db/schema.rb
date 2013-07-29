@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130726011301) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "notifications", force: true do |t|
     t.string   "message"
     t.integer  "user_id"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130726011301) do
     t.datetime "updated_at"
   end
 
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "sent_tasks", force: true do |t|
     t.text     "description"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20130726011301) do
     t.integer  "user_id"
   end
 
-  add_index "sent_tasks", ["sender_id"], name: "index_sent_tasks_on_sender_id"
-  add_index "sent_tasks", ["user_id"], name: "index_sent_tasks_on_user_id"
+  add_index "sent_tasks", ["sender_id"], name: "index_sent_tasks_on_sender_id", using: :btree
+  add_index "sent_tasks", ["user_id"], name: "index_sent_tasks_on_user_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.text     "description"
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 20130726011301) do
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

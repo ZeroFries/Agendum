@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  database: crowdfunder_development
+  database: agendum_development
   username: postgres
   password: popcorn
   host: localhost
@@ -15,14 +15,14 @@ development:
 # Do not set this db to the same as development or production.
 test:
   adapter: postgresql
-  database: crowdfunder_development
+  database: agendum_development
   username: postgres
   password: popcorn
   host: localhost
 
 production:
   adapter: postgresql
-  database: crowdfunder_development
+  database: agendum_development
   username: postgres
   password: popcorn
   host: localhost
