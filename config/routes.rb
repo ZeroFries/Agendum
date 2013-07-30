@@ -8,7 +8,6 @@ Agendum::Application.routes.draw do
   end
 
   root to: "static#home"
-  get '*anything' => "static#home", via: [:all]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
