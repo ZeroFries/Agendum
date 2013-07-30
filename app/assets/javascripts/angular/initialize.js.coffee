@@ -2,7 +2,7 @@
 
 # things left to do: fix signup errors, try rendering home as a bunch of partials
 # filters to check if user is logged in or not
-@agendum.config ($routeProvider, $locationProvider) ->
+@agendum.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 	$routeProvider
 	.when('/', templateUrl: "/assets/home.html", controller: 'StaticController')
 	.when('/login', templateUrl: "/assets/login.html", controller: 'SessionsController')
@@ -10,6 +10,7 @@
 	.when('/signup', templateUrl: "/assets/signup.html", controller: 'UsersController')
 	.when('/tasks', templateUrl: "/assets/tasks.html", controller: 'TasksController')
 	.otherwise(template: "Page not found.")
+]
 
 @agendum.run ['$window', '$templateCache', ($window, $templateCache) ->
   # Load the templates into the angular template cache when angular 
