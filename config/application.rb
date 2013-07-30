@@ -11,7 +11,7 @@ module Agendum
   class Application < Rails::Application
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += %w( .svg .eot .woff .ttf )
-    #config.assets.paths << Rails.root.join("app", "assets", "templates")
+    config.assets.paths << Rails.root.join("app", "assets", "templates")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -24,7 +24,7 @@ module Agendum
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.generators do |g|
-    	g.test_framework :test_unit, fixture: false
+      g.test_framework :test_unit, fixture: false
       g.fixture_replacement :factory_girl, :dir => "test/factories"
     end
   end
