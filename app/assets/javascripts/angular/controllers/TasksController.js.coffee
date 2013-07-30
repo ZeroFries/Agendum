@@ -1,4 +1,4 @@
-@agendum.controller 'TasksController', ($scope, $location, $cookies, Tasks, Task, SentTask, SentTasks, User, Notification) ->
+@agendum.controller 'TasksController', ['$scope', '$location', '$cookies', 'Tasks', 'Task', 'SentTask', 'SentTasks', 'User', 'Notification', ($scope, $location, $cookies, Tasks, Task, SentTask, SentTasks, User, Notification) ->
 	# redirect non-logged in users
 	if $cookies.currentUserEmail == undefined
 		$location.path "/"
@@ -124,3 +124,4 @@
 		Notification.delete({email: $scope.user.email, id: 1}, ->
 			$scope.notifications = []
 		)
+]

@@ -1,4 +1,4 @@
-@agendum.controller 'SessionsController', ($scope, $location, $cookies, Session) ->
+@agendum.controller 'SessionsController', ['$scope', '$location', '$cookies', 'Session', ($scope, $location, $cookies, Session) ->
 	if $location.path() == "/logout"
 		console.log "yo"
 		delete $cookies.currentUserEmail
@@ -17,3 +17,4 @@
 
 	onUserLoginFailed = (response) ->
 		$scope.errors = ["Wrong login details"]
+]

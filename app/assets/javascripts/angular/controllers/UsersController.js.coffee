@@ -1,6 +1,6 @@
 #@agendum = angular.module "agendum"
 
-@agendum.controller 'UsersController', ($scope, $location, $cookies, User) ->
+@agendum.controller 'UsersController', ['$scope', '$location', '$cookies', 'User', ($scope, $location, $cookies, User) ->
 	# look into filters to see if i can just redirect with one of those
 	if $cookies.currentUserEmail != undefined
 		$location.path "/tasks"
@@ -25,3 +25,4 @@
 		errorArray.push("Password: " + errors.password[0]) if errors.password != undefined
 		errorArray.push("Passwords must match") if errors.password_confirmation != undefined
 		errorArray
+]
