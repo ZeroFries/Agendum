@@ -4,11 +4,11 @@
 # filters to check if user is logged in or not
 @agendum.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 	$routeProvider
-	.when('/', templateUrl: "/assets/home.html", controller: 'StaticController')
-	.when('/login', templateUrl: "/assets/login.html", controller: 'SessionsController')
-	.when('/logout', templateUrl: "/assets/home.html", controller: 'SessionsController')
-	.when('/signup', templateUrl: "/assets/signup.html", controller: 'UsersController')
-	.when('/tasks', templateUrl: "/assets/tasks.html", controller: 'TasksController')
+	.when('/', templateUrl: "/assets/templates/home.html", controller: 'StaticController')
+	.when('/login', templateUrl: "/assets/templates/login.html", controller: 'SessionsController')
+	.when('/logout', templateUrl: "/assets/templates/home.html", controller: 'SessionsController')
+	.when('/signup', templateUrl: "/assets/templates/signup.html", controller: 'UsersController')
+	.when('/tasks', templateUrl: "/assets/templates/tasks.html", controller: 'TasksController')
 	.otherwise(template: "Page not found.")
 ]
 
