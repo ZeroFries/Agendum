@@ -21,24 +21,30 @@
 ]
 
 # define user factory/ngResource
-@agendum.factory "User", ($resource) ->
+@agendum.factory "User", ['$resource', ($resource) ->
 	$resource '/api/users/:id', {id: '@id'}
+]
 
-@agendum.factory "Session", ($resource) ->
+@agendum.factory "Session", ['$resource', ($resource) ->
 	$resource '/api/session'
+]
 
-@agendum.factory "Task", ($resource) ->
+@agendum.factory "Task", ['$resource', ($resource) ->
 	$resource "/api/tasks/:id", {id: '@id'}
+]
 
-@agendum.factory "Tasks", ($resource) ->
+@agendum.factory "Tasks", ['$resource', ($resource) ->
 	$resource "/api/tasks"
+]
 
-@agendum.factory "SentTask", ($resource) ->
+@agendum.factory "SentTask", ['$resource', ($resource) ->
 	$resource "/api/sent_tasks/:id", {id: '@id'}
-	#, {'save': {method:'Post', parameters: ('emails', 'sender_email', 'description') isArray:true}}
+]
 
-@agendum.factory "SentTasks", ($resource) ->
+@agendum.factory "SentTasks", ['$resource', ($resource) ->
 	$resource "/api/sent_tasks"
+]
 
-@agendum.factory "Notification", ($resource) ->
+@agendum.factory "Notification", ['$resource', ($resource) ->
 	$resource "/api/notifications/:id", {id: '@id'}
+]
