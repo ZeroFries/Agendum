@@ -4,11 +4,11 @@
 # filters to check if user is logged in or not
 @agendum.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 	$routeProvider
-	.when('/', templateUrl: "<%= asset_path('home.html') %>", controller: 'StaticController')
-	.when('/login', templateUrl: "<%= asset_path('login.html') %>", controller: 'SessionsController')
-	.when('/logout', templateUrl: "<%= asset_path('home.html') %>", controller: 'SessionsController')
-	.when('/signup', templateUrl: "<%= asset_path('signup.html') %>", controller: 'UsersController')
-	.when('/tasks', templateUrl: "<%= asset_path('tasks.html') %>", controller: 'TasksController')
+	.when('/', templateUrl: "<%= asset_path('home.html') %>", controller: "<%= asset_path('StaticController').gsub('/','') %>")
+	.when('/login', templateUrl: "<%= asset_path('login.html') %>", controller: "<%= asset_path('SessionsController').gsub('/','') %>")
+	.when('/logout', templateUrl: "<%= asset_path('home.html') %>", controller: "<%= asset_path('SessionsController').gsub('/','') %>")
+	.when('/signup', templateUrl: "<%= asset_path('signup.html') %>", controller: "<%= asset_path('UsersController').gsub('/','') %>")
+	.when('/tasks', templateUrl: "<%= asset_path('tasks.html') %>", controller: "<%= asset_path('TasksController').gsub('/','') %>")
 	.otherwise(template: "Page not found.")
 ]
 
