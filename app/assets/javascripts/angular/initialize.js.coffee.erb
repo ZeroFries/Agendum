@@ -1,14 +1,14 @@
-@agendum = angular.module "agendum", ['ngResource', 'ngCookies', 'agendum.SessionsController']	
+@agendum = angular.module "agendum", ['ngResource', 'ngCookies']
 	
 # things left to do: fix signup errors, try rendering home as a bunch of partials
 # filters to check if user is logged in or not
 @agendum.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 	$routeProvider
-	.when('/', templateUrl: "<%= asset_path('home.html') %>", controller: "<%= asset_path('StaticController').gsub('/','') %>")
-	.when('/login', templateUrl: "<%= asset_path('login.html') %>", controller: "<%= asset_path('SessionsController').gsub('/','') %>")
-	.when('/logout', templateUrl: "<%= asset_path('home.html') %>", controller: "<%= asset_path('SessionsController').gsub('/','') %>")
-	.when('/signup', templateUrl: "<%= asset_path('signup.html') %>", controller: "<%= asset_path('UsersController').gsub('/','') %>")
-	.when('/tasks', templateUrl: "<%= asset_path('tasks.html') %>", controller: "<%= asset_path('TasksController').gsub('/','') %>")
+	.when('/', templateUrl: "<%= asset_path('home.html') %>", controller: "StaticController")
+	.when('/login', templateUrl: "<%= asset_path('login.html') %>", controller: "SessionsController")
+	.when('/logout', templateUrl: "<%= asset_path('home.html') %>", controller: "SessionsController")
+	.when('/signup', templateUrl: "<%= asset_path('signup.html') %>", controller: "UsersController")
+	.when('/tasks', templateUrl: "<%= asset_path('tasks.html') %>", controller: "TasksController")
 	.otherwise(template: "Page not found.")
 ]
 
