@@ -1,4 +1,4 @@
-<a href="http://morning-shore-1613.herokuapp.com/#/", target="_blank">Agendum</a>
+http://morning-shore-1613.herokuapp.com/#/
 
 The to-do list/task manager designed to help the email clutter problem. Instead of emailing team members, students, partners, etc., what tasks you need completed, Agendum lets you send tasks to others which they may add to their own to-do list with a simple click, or dismiss the task. The sender of the task recieves a notification so they know the recipient's deicision.
 
