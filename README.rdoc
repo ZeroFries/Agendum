@@ -1,28 +1,9 @@
-== README
+<a href="http://morning-shore-1613.herokuapp.com/#/", target="_blank">Agendum</a>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The to-do list/task manager designed to help the email clutter problem. Instead of emailing team members, students, partners, etc., what tasks you need completed, Agendum lets you send tasks to others which they may add to their own to-do list with a simple click, or dismiss the task. The sender of the task recieves a notification so they know the recipient's deicision.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Lessons learned during the creation of this app:
+-Angular front end with Rails back end
+-Working with Angular directives, dependency injections, factories and resources
+-Using a Json API to communicate between the two ends
+-Responsive design/media queries
